@@ -28,10 +28,14 @@ public class HospitalService {
 	public ResponseEntity<ResponseStructure<Hospital>> getHospitalById(int hospId) {
 		Hospital getHospital = hospitalDao.getHospitalById(hospId);
 		ResponseStructure<Hospital> structure=new ResponseStructure<Hospital>();
+		if(getHospital !=null) {
 		structure.setData(getHospital);
 		structure.setMessage("hospital Found");
 		structure.setStatusCode(HttpStatus.OK.value());
 		return new ResponseEntity<ResponseStructure<Hospital>>(structure,HttpStatus.OK);
+		}else {
+			return new ResponseEntity<ResponseStructure<Hospital>>(structure,HttpStatus.NOT_FOUND);
+		}
 		}
 
 	public ResponseEntity<ResponseStructure<List<Hospital>>> findAllHospital() {

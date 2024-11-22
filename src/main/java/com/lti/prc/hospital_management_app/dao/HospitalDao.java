@@ -51,6 +51,11 @@ public class HospitalDao {
 		return null;
 	}
 	
+	public Hospital findById(int hospId) {
+		Optional<Hospital> optional = repository.findById(hospId);
+		return optional.isPresent()?optional.get():null;
+	}
+	
 	
 
 }

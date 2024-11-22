@@ -1,28 +1,27 @@
 package com.lti.prc.hospital_management_app.entities;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
 
-@Data
 @Entity
-public class Hospital {
+@Data
+public class AppointmentRecord {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int hospitalId;
-	private String hospitalName;
-	private String hospitalEmail;
-	private long hospitalPhone;
+	private int arid;
+	private int patientId;
+	private int doctorId;
 	
-	@OneToMany
-	private List<Branch> branches;
 	
+	@OneToOne
+	@JsonIgnore
+	private Prescription prescription;
 
 }
